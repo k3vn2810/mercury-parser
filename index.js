@@ -9,7 +9,11 @@ app.get('/parser', async (req, res) => {
   }
 
   try {
-    const result = await Mercury.parse(url);
+    const result = await Mercury.parse(url, {
+  headers: {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/115 Safari/537.36'
+  }
+});
     res.json(result);
   } catch (error) {
     res.status(500).json({ error: 'Failed to parse URL', details: error.message });
